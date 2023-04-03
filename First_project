@@ -1,0 +1,81 @@
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, ToastAndroid} from 'react-native';
+
+export default function App(){
+
+  const [backgroundColor, setBackgroundColor] = useState('#fff');
+  const [sayac, setSayac] = useState(0);
+
+ 
+
+  useEffect(() =>{
+  if(sayac == 5){
+      setBackgroundColor("yellow");
+    }
+    else if(sayac == -5){
+      setBackgroundColor("red");
+    }
+    else{
+      setBackgroundColor("#fff");
+    }
+  }, [sayac])
+
+  return(
+
+    <View style={[styles.container, {backgroundColor}]}>
+      <Text style={styles.yazi}>Selamm</Text>
+      <Text >{sayac}</Text>
+      <TouchableOpacity style={styles.button_arttir} 
+        onPress={() => {
+          setSayac(sayac+1);
+        }}> 
+        <Text style={styles.button_text}>Arttir</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.button_azalt} 
+        onPress={() => {
+          setSayac(sayac-1);
+        }}> 
+        <Text style={styles.button_text}>Azalt</Text>
+      </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button_reset} onPress={() => setSayac(0)}> 
+        <Text style={styles.button_text}>Reset</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  yazi: {
+    fontWeight: 'bold',
+  },
+  button_arttir: {
+    backgroundColor: 'green',
+    padding: 20,
+    borderRadius: 5,
+    marginTop: 10,
+    weight: 50
+  },
+   button_azalt: {
+    backgroundColor: 'pink',
+    padding: 20,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  button_reset: {
+     backgroundColor: 'orange',
+    padding: 20,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  button_text: {
+    color: "#fff",
+  },
+});
